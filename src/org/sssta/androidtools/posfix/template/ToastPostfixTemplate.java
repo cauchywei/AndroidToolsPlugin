@@ -7,7 +7,7 @@ import com.intellij.codeInsight.template.macro.VariableOfTypeMacro;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
 import org.sssta.androidtools.posfix.internal.RichChooserStringBasedPostfixTemplate;
-import org.sssta.androidtools.util.AndroidClassFullName;
+import org.sssta.androidtools.util.AndroidFQClass;
 import org.sssta.androidtools.util.AndroidPostfixTemplatesUtils;
 
 /**
@@ -23,17 +23,18 @@ public class ToastPostfixTemplate extends RichChooserStringBasedPostfixTemplate 
         super(alias, "Toast.makeText(context, expr, Toast.LENGTH_SHORT).show();", AndroidPostfixTemplatesUtils.IS_NON_NULL);
     }
 
-
     @Override
     public String getTemplateString(@NotNull PsiElement element) {
-        return getStaticMethodPrefix(AndroidClassFullName.TOAST, "makeText", element) + "($context$, $expr$, Toast.LENGTH_SHORT).show()$END$";
+        return getStaticMethodPrefix(AndroidFQClass.TOAST, "makeText", element) + "($context$, $expr$, Toast.LENGTH_SHORT).show()$END$";
     }
 
     @Override
     protected void setVariables(@NotNull Template template, @NotNull PsiElement element) {
 
         MacroCallNode node = new MacroCallNode(new VariableOfTypeMacro());
-        node.addParameter(new ConstantNode(AndroidClassFullName.CONTEXT));
+        node.addParameter(new ConstantNode(AndroidFQClass.CONTEXT));
         template.addVariable("context", node, new ConstantNode(""), false);
     }
+
+
 }

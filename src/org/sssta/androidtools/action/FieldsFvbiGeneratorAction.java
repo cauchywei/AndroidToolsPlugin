@@ -1,4 +1,4 @@
-package org.sssta.androidtools.generator;
+package org.sssta.androidtools.action;
 
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
@@ -8,9 +8,9 @@ import org.jetbrains.annotations.NotNull;
 /**
  * Created by cauchywei on 15/8/17.
  */
-public class FieldsFvbiGeneratorAction extends BaseFvbiGeneratorAction {
+public class FieldsFvbiGeneratorAction extends AbstractFvbiGeneratorAction {
     @Override
-    public void generator(@NotNull Project project, @NotNull Editor editor, PsiFile xmlFile) {
+    public void generate(@NotNull Project project, @NotNull Editor editor, PsiFile xmlFile) {
 
     }
 }

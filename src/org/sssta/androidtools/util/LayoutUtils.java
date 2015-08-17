@@ -17,11 +17,11 @@ public class LayoutUtils {
 
     public static PsiFile findLayoutXmlFile(Project project, Editor editor){
         PsiElement layoutResourceElement = findLayoutResourceElement(project, editor);
-        if (layoutResourceElement == null) {
+        if (layoutResourceElement == null || !isValidLayoutResource(layoutResourceElement)) {
             return null;
         }
 
-        return  findXmlByLayoutResourceElement(layoutResourceElement);
+        return findXmlByLayoutResourceElement(layoutResourceElement);
     }
 
     public static PsiElement findLayoutResourceElement(Project project, Editor editor) {
@@ -46,17 +46,10 @@ public class LayoutUtils {
         return layoutMethod.getArgumentList().findElementAt(0);
     }
 
-    public static boolean isValidLayoutResource(PsiElement psiElement){
+    public static boolean isValidLayoutResource(PsiElement psiElement) {
 
-        if (psiElement == null) {
-            return false;
-        }
+        return psiElement != null && !psiElement.getText().startsWith("R.layout");
 
-        if (psiElement.getText().startsWith("R.layout")){
-            return false;
-        }
-
-        return true;
     }
 
     public static PsiFile findXmlByLayoutResourceElement(PsiElement layoutResource){

@@ -1,4 +1,4 @@
-package org.sssta.androidtools.generator;
+package org.sssta.androidtools.action.generator;
 
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;

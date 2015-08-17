@@ -1,4 +1,4 @@
-package org.sssta.androidtools.generator;
+package org.sssta.androidtools.action;
 
 import com.intellij.codeInsight.CodeInsightActionHandler;
 import com.intellij.codeInsight.generation.actions.BaseGenerateAction;
@@ -18,19 +18,19 @@ import org.sssta.androidtools.util.LayoutUtils;
 /**
  * Created by cauchywei on 15/8/17.
  */
-public abstract class BaseFvbiGeneratorAction extends BaseGenerateAction {
+public abstract class AbstractFvbiGeneratorAction extends BaseGenerateAction {
 
-    public BaseFvbiGeneratorAction() {
+    public AbstractFvbiGeneratorAction() {
         super(null);
     }
 
-    public BaseFvbiGeneratorAction(CodeInsightActionHandler handler) {
+    public AbstractFvbiGeneratorAction(CodeInsightActionHandler handler) {
         super(handler);
     }
 
 
     @Override
-    protected boolean isValidForFile(Project project, Editor editor, PsiFile file) {
+    protected boolean isValidForFile(@NotNull Project project, @NotNull Editor editor, @NotNull PsiFile file) {
 
         int offset = editor.getCaretModel().getOffset();
         PsiElement psiElement = file.findElementAt(offset);
@@ -58,23 +58,12 @@ public abstract class BaseFvbiGeneratorAction extends BaseGenerateAction {
 
     @Override
     public void actionPerformedImpl(@NotNull Project project,@NotNull Editor editor) {
-        super.actionPerformedImpl(project, editor);
-
 
         PsiFile layoutXmlFile = LayoutUtils.findLayoutXmlFile(project, editor);
-
-        layoutXmlFile.accept(new XmlElementVisitor() {
-            @Override
-            public void visitXmlTag(XmlTag tag) {
-                super.visitXmlTag(tag);
-
-                XmlAttribute idAttribute = tag.getAttribute("android:id");
-
-            }
-        });
+        generate(project,editor,layoutXmlFile);
 
     }
 
-    public abstract void generator(@NotNull Project project,@NotNull Editor editor,PsiFile xmlFile);
+    public abstract void generate(@NotNull Project project,@NotNull Editor editor,PsiFile xmlFile);
 
 }

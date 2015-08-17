@@ -11,7 +11,7 @@ import com.intellij.psi.PsiMethod;
 import com.intellij.psi.PsiMethodCallExpression;
 import com.intellij.psi.util.PsiTreeUtil;
 import org.jetbrains.annotations.NotNull;
-import org.sssta.androidtools.util.LayoutUtils;
+import org.sssta.androidtools.util.LayoutUtil;
 
 /**
  * Created by cauchywei on 15/8/17.
@@ -57,7 +57,7 @@ public abstract class AbstractFvbiGeneratorAction extends BaseGenerateAction {
     @Override
     public void actionPerformedImpl(@NotNull Project project,@NotNull Editor editor) {
 
-        PsiFile layoutXmlFile = LayoutUtils.findLayoutXmlFile(project, editor);
+        PsiFile layoutXmlFile = LayoutUtil.findLayoutXmlFile(project, editor);
         generate(project,editor,layoutXmlFile);
 
     }

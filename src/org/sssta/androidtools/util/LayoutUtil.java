@@ -11,7 +11,7 @@ import com.intellij.psi.util.PsiUtilBase;
 /**
  * Created by cauchywei on 15/8/17.
  */
-public class LayoutUtils {
+public class LayoutUtil {
 
     public static PsiFile findLayoutXmlFile(Project project, Editor editor){
 

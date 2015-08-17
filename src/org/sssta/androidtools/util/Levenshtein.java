@@ -44,7 +44,6 @@ public class Levenshtein {
         System.out.println("相似度："+similarity);
     }
 
-    //得到最小值
     private static int min(int... is) {
         int min = Integer.MAX_VALUE;
         for (int i : is) {

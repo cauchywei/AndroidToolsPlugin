@@ -4,7 +4,7 @@ import com.intellij.psi.*;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.siyeh.ig.psiutils.ClassUtils;
 
-public class ImportUtils {
+public class ImportUtil {
 
     /**
      * Check whether the current context has a static member import, either on-demand or explicit.

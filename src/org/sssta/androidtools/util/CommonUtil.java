@@ -66,13 +66,13 @@ public class CommonUtil {
         return type != null && type.equalsToText(CommonClassNames.JAVA_LANG_STRING);
     }
 
-    public static List<String> splitName(String name){
-        if (name.contains("_")){
-            return splitUnderscoreName(name);
-        }else {
-            return splitCamelName(name);
-        }
-    }
+//    public static List<String> splitViewId(String name){
+//        if (name.contains("_")){
+//            return splitUnderscoreName(name);
+//        }else {
+//            return splitCamelName(name);
+//        }
+//    }
 
     public static List<String> splitCamelName(String name){
         List<String> words = new ArrayList<>();
@@ -99,5 +99,34 @@ public class CommonUtil {
         return Arrays.asList(name.split("_"));
     }
 
+    /**
+     * name match means t is s' common substring
+     * @param s
+     * @param t
+     * @return
+     */
+    public static boolean nameMatch(@NotNull String s, @NotNull String t){
+
+        if (s.length() == 0 || t.length() == 0)
+            return false;
+
+        t = t.toLowerCase();
+        s = s.toLowerCase();
+
+        int i, j = 0;
+        if (s.length() < t.length()){
+            String tmp = s;
+            s = t;
+            t = tmp;
+        }
+
+        for (i = 0; i < s.length(); i++) {
+            if (s.charAt(i) == t.charAt(j)){
+                j++;
+            }
+        }
+
+        return j == t.length();
+    }
 
 }

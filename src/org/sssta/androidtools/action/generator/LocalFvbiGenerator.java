@@ -49,7 +49,7 @@ public class LocalFvbiGenerator extends AbstractFvbiGenerator {
 
         for (ViewModel view:views){
             String varName = "";
-//            String fvbiStatement = String.format(statementFormat,view.getType(),)
+//            String fvbiStatement = String.format(statementFormat,view.getClazz(),)
 //            elementFactory.createStatementFromText(,)
         }
 

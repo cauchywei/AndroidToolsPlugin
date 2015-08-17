@@ -167,7 +167,7 @@ public class AndroidPostfixTemplatesUtils {
      */
     public static String getStaticMethodPrefix(@NotNull String fqClassName, @NotNull String methodName,
                                                @NotNull PsiElement context) {
-        return ImportUtils.hasImportStatic(fqClassName, methodName, context) ? methodName : (fqClassName + "." + methodName);
+        return ImportUtil.hasImportStatic(fqClassName, methodName, context) ? methodName : (fqClassName + "." + methodName);
     }
 
     public static boolean isTopmostExpression(@NotNull PsiElement element) {

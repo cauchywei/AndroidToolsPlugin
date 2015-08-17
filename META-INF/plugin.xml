@@ -44,11 +44,11 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="Generator.findViewById" class="org.sssta.androidtools.action.LocalFvbiGeneratorAction"
+    <action id="org.sssta.androidtools.generator.findViewById.local" class="org.sssta.androidtools.action.LocalFvbiGeneratorAction"
             text="findViewById with local..." description="Generate findViewByIds with local var according to layout xml">
       <add-to-group group-id="GenerateGroup" anchor="last"/>
     </action>
-    <action id="Generator.findViewById" class="org.sssta.androidtools.action.FieldsFvbiGeneratorAction"
+    <action id="org.sssta.androidtools.generator.findViewById.fields" class="org.sssta.androidtools.action.FieldsFvbiGeneratorAction"
             text="findViewById with fields..." description="Generate findViewByIds with fields  according to layout xml">
       <add-to-group group-id="GenerateGroup" anchor="last"/>
     </action>

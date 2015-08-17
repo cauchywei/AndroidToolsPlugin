@@ -2,16 +2,14 @@ package org.sssta.androidtools.action;
 
 import com.intellij.codeInsight.CodeInsightActionHandler;
 import com.intellij.codeInsight.generation.actions.BaseGenerateAction;
-import com.intellij.openapi.actionSystem.AnActionEvent;
-import com.intellij.openapi.actionSystem.CommonDataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.patterns.PlatformPatterns;
-import com.intellij.psi.*;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiMethod;
+import com.intellij.psi.PsiMethodCallExpression;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.intellij.psi.xml.XmlAttribute;
-import com.intellij.psi.xml.XmlTag;
-import com.intellij.xml.util.XmlPsiUtil;
 import org.jetbrains.annotations.NotNull;
 import org.sssta.androidtools.util.LayoutUtils;
 
@@ -64,6 +62,7 @@ public abstract class AbstractFvbiGeneratorAction extends BaseGenerateAction {
 
     }
 
-    public abstract void generate(@NotNull Project project,@NotNull Editor editor,PsiFile xmlFile);
+
+    public abstract void generate(@NotNull Project project, @NotNull Editor editor,PsiFile xmlFile);
 
 }

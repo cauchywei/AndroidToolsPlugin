@@ -34,6 +34,7 @@ public class ToastPostfixTemplate extends RichChooserStringBasedPostfixTemplate 
         MacroCallNode node = new MacroCallNode(new VariableOfTypeMacro());
         node.addParameter(new ConstantNode(AndroidFQClass.CONTEXT));
         template.addVariable("context", node, new ConstantNode(""), false);
+
     }
 
 

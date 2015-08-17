@@ -3,12 +3,10 @@ package org.sssta.androidtools.util;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.*;
-import com.intellij.psi.impl.source.tree.java.PsiIdentifierImpl;
 import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilBase;
-import org.codehaus.groovy.ast.expr.MethodCallExpression;
 
 /**
  * Created by cauchywei on 15/8/17.
@@ -16,7 +14,9 @@ import org.codehaus.groovy.ast.expr.MethodCallExpression;
 public class LayoutUtils {
 
     public static PsiFile findLayoutXmlFile(Project project, Editor editor){
+
         PsiElement layoutResourceElement = findLayoutResourceElement(project, editor);
+
         if (layoutResourceElement == null || !isValidLayoutResource(layoutResourceElement)) {
             return null;
         }
@@ -24,7 +24,24 @@ public class LayoutUtils {
         return findXmlByLayoutResourceElement(layoutResourceElement);
     }
 
-    public static PsiElement findLayoutResourceElement(Project project, Editor editor) {
+    public static PsiElement findLayoutResourceElement(Project project, Editor editor){
+        return findLayoutResourceElementByMethodCallExpress(findLayoutSetMethod(project, editor));
+    }
+
+    public static PsiElement findLayoutResourceElementByMethodCallExpress(PsiMethodCallExpression methodCallExpression) {
+
+        if (methodCallExpression == null) {
+            return null;
+        }
+
+        PsiExpression[] expressions = methodCallExpression.getArgumentList().getExpressions();
+        if (expressions.length == 0){
+            return null;
+        }
+        return expressions[0];
+    }
+
+    public static PsiMethodCallExpression findLayoutSetMethod(Project project, Editor editor){
 
         if (project == null || editor == null) {
             return null;
@@ -37,18 +54,24 @@ public class LayoutUtils {
         }
 
         PsiElement elementAtCaret = PsiUtilBase.getElementAtCaret(editor);
-        PsiMethodCallExpression layoutMethod = PsiTreeUtil.getParentOfType(elementAtCaret, PsiMethodCallExpression.class);
-
-        if (layoutMethod == null) {
-            return null;
-        }
-
-        return layoutMethod.getArgumentList().findElementAt(0);
+        return PsiTreeUtil.getParentOfType(elementAtCaret, PsiMethodCallExpression.class);
     }
 
     public static boolean isValidLayoutResource(PsiElement psiElement) {
 
-        return psiElement != null && !psiElement.getText().startsWith("R.layout");
+        if (psiElement == null) {
+            return false;
+        }
+
+        String name;
+        if (psiElement instanceof PsiReferenceExpression){
+            name = ((PsiReferenceExpression)psiElement).getReferenceName();
+        }else {
+            name = psiElement.getText();
+        }
+
+
+        return !"R.layout".startsWith(name);
 
     }
 
@@ -65,4 +88,6 @@ public class LayoutUtils {
         return xmlFiles[0];
 
     }
+
+
 }

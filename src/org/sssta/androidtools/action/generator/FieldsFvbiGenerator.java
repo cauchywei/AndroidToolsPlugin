@@ -1,18 +1,19 @@
 package org.sssta.androidtools.action.generator;
 
-import com.intellij.codeInsight.template.Template;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.PsiFile;
+import com.intellij.psi.*;
+import com.intellij.psi.util.PsiTreeUtil;
 import org.sssta.androidtools.model.ViewModel;
 import org.sssta.androidtools.util.LayoutUtil;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by cauchywei on 15/8/18.
  */
-public class FieldFvbiGenerator extends AbstractFvbiGenerator {
+public class FieldsFvbiGenerator extends AbstractFvbiGenerator {
 
     @Override
     public String getFvbiFormat() {
@@ -27,22 +28,19 @@ public class FieldFvbiGenerator extends AbstractFvbiGenerator {
         return  String.format(statementFormat,varName,clazz,viewParentName,fqId);
     }
 
-    public Template generatorFields(Project project, Editor editor, PsiFile xmlFile, String viewParentName) {
-
+    public List<PsiField> generatorFields(Project project, Editor editor, PsiFile xmlFile,PsiElement context) {
 
         List<ViewModel> views = LayoutUtil.getContainingIdViewsInXml(xmlFile);
-        viewParentName = viewParentName == null?"":viewParentName + ".";
-
-        String statementFormat = getFvbiFormat();
-        StringBuilder templateString = new StringBuilder("\n");
+        PsiClass psiClass = PsiTreeUtil.getParentOfType(context, PsiClass.class);
+        String fieldFormat = "private %s %s;\n";
+        List<PsiField> fieldStatements = new ArrayList<>();
+        PsiElementFactory factory = JavaPsiFacade.getInstance(project).getElementFactory();
 
         for (ViewModel view:views){
-            String fvbiStatement = getFvbiStatementTemplate(statementFormat,view,viewParentName);
-            templateString.append(fvbiStatement);
+            String fvbiStatement = String.format(fieldFormat,view.getFqClazz(),view.getFieldName());
+            fieldStatements.add(factory.createFieldFromText(fvbiStatement, psiClass));
         }
 
-        templateString.append("$end$");
-
-        return  generateTemplate(project,templateString.toString());
+        return  fieldStatements;
     }
 }

@@ -5,13 +5,14 @@
   <vendor email="cauchywei@gmail.com" url="http://www.sssta.org">SSSTA</vendor>
 
   <description><![CDATA[
-      Enter short description for your plugin here.<br>
-      <em>most HTML tags may be used</em>
+      Helping people developer more easy
+      Support:
+      1.generate Show Toast by toast postfix
+      2.generate findViewById according layout
     ]]></description>
 
   <change-notes><![CDATA[
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>
+
     ]]>
   </change-notes>
 

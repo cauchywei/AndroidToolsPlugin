@@ -1,22 +1,17 @@
 package org.sssta.androidtools.action.generator;
 
+import com.intellij.codeInsight.template.Template;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiFile;
-import com.intellij.psi.PsiStatement;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by cauchywei on 15/8/17.
  */
 public abstract class AbstractFvbiGenerator {
 
-    public static final List<PsiStatement> EMPTY_STATEMENT = new ArrayList<>(0);
-
-    public abstract List<PsiStatement> generator(Project project, Editor editor, PsiFile xmlFile,String viewParentName);
-    public List<PsiStatement> generatorFields(Project project, Editor editor, PsiFile xmlFile,String viewParentName){
-        return EMPTY_STATEMENT;
+    public abstract Template generator(Project project, Editor editor, PsiFile xmlFile,String viewParentName);
+    public Template generatorFields(Project project, Editor editor, PsiFile xmlFile,String viewParentName){
+        return null;
     }
 }

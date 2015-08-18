@@ -10,8 +10,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -75,7 +74,7 @@ public class CommonUtil {
 //    }
 
     public static List<String> splitCamelName(String name){
-        List<String> words = new ArrayList<>();
+        List<String> words = new LinkedList<>();
 
         int start = 0;
         for (int i = 0; i < name.length(); i++) {
@@ -95,8 +94,13 @@ public class CommonUtil {
         return words;
     }
 
-    public static List<String> splitUnderscoreName(String name){
-        return Arrays.asList(name.split("_"));
+    public static List<String> splitUnderscoreName(final String name){
+        return new LinkedList<String>(){{
+            String[] names = name.split("_");
+            for (String name:names){
+                add(name);
+            }
+        }};
     }
 
     /**
@@ -114,19 +118,24 @@ public class CommonUtil {
         s = s.toLowerCase();
 
         int i, j = 0;
+        int minLen;
+
         if (s.length() < t.length()){
             String tmp = s;
             s = t;
             t = tmp;
+
         }
 
         for (i = 0; i < s.length(); i++) {
             if (s.charAt(i) == t.charAt(j)){
                 j++;
+                if (j == t.length())
+                    return true;
             }
         }
 
-        return j == t.length();
+        return false;
     }
 
 }

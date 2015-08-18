@@ -6,7 +6,9 @@ package org.sssta.androidtools.util;
 public class Levenshtein {
 
     public static void main(String[] args){
-        System.out.print(CommonUtil.splitCamelName("AaaBbbbbCaaaa"));
+        System.out.println(CommonUtil.splitCamelName("AaaBbbbbCaaaa"));
+
+        System.out.println("@+id/2333".matches("^@\\+?id/.*"));
     }
 
     public static void levenshtein(String str1,String str2) {

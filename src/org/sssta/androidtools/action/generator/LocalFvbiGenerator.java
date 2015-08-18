@@ -1,8 +1,12 @@
 package org.sssta.androidtools.action.generator;
 
+import com.intellij.codeInsight.template.Template;
+import com.intellij.codeInsight.template.TemplateManager;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
-import com.intellij.psi.*;
+import com.intellij.psi.PsiFile;
+import com.intellij.psi.PsiStatement;
+import com.intellij.psi.XmlRecursiveElementVisitor;
 import com.intellij.psi.xml.XmlAttribute;
 import com.intellij.psi.xml.XmlTag;
 import org.sssta.androidtools.model.ViewModel;
@@ -19,11 +23,9 @@ public class LocalFvbiGenerator extends AbstractFvbiGenerator {
     }
 
     @Override
-    public List<PsiStatement> generator(Project project, Editor editor, PsiFile xmlFile, String viewParentName) {
+    public Template generator(Project project, Editor editor, PsiFile xmlFile, String viewParentName) {
 
-        String name = xmlFile.getName();
-
-
+        final String name = xmlFile.getName();
         final List<ViewModel> views = new ArrayList<>();
         xmlFile.accept(new XmlRecursiveElementVisitor() {
             @Override
@@ -33,30 +35,30 @@ public class LocalFvbiGenerator extends AbstractFvbiGenerator {
 
                 if (idAttribute != null) {
                     String id = idAttribute.getValue();
-                    if (id != null && id.matches("^@\\+?id")){
-                        views.add(new ViewModel(id,tag.getName()));
+                    if (id != null && id.matches("^@\\+?id/.*")){
+                        views.add(new ViewModel(name,id,tag.getName()));
                     }
                 }
             }
         });
 
-        PsiElementFactory elementFactory = JavaPsiFacade.getInstance(project).getElementFactory();
-
-        String statementFormat = null;
+        List<PsiStatement> fvbiStatements = new ArrayList<>();
         viewParentName = viewParentName == null?"":viewParentName + ".";
 
-        statementFormat = "%s %s = (%s)%sfindViewById(%);";
+        String statementFormat = "%s %s = (%s) %sfindViewById(%s);\n";
+        StringBuilder templateString = new StringBuilder("\n");
 
         for (ViewModel view:views){
-            String varName = "";
-//            String fvbiStatement = String.format(statementFormat,view.getClazz(),)
-//            elementFactory.createStatementFromText(,)
+            String varName = view.getLocalVarName();
+            String clazz = view.getFqClazz();
+            String fvbiStatement = String.format(statementFormat,clazz,varName,clazz,viewParentName,view.getFqId());
+            templateString.append(fvbiStatement);
         }
 
-        List<PsiStatement> fvbiStatements = new ArrayList<>();
+        templateString.append("$end$");
 
+        TemplateManager templateManager = TemplateManager.getInstance(project);
 
-
-        return null;
+        return templateManager.createTemplate("", "",templateString.toString());
     }
 }

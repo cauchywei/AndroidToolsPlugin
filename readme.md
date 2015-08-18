@@ -1,5 +1,5 @@
 #Android Tools ( Developing... )
----------------
+====================
 <br/>
 
 Android Tools is an Android Studio plugin helping developer reducing heavy and repeat works in development.
@@ -30,7 +30,7 @@ You can generate two type `findViewById` from  `setContentView(R.layout.activity
 
 Assuming we have an Activity named `LoginActivity` which's layout file named `activiy_login.xml`
 
-A TextView in activity_layout.xml
+A TextView in `activity_layout.xml`
 
 ```xml
 	<TextView

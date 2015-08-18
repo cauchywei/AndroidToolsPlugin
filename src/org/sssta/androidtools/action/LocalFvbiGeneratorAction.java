@@ -34,10 +34,7 @@ public class LocalFvbiGeneratorAction extends AbstractFvbiGeneratorAction {
             viewParentName = variable.getName();
         }
 
-
-
         PsiMethodCallExpression callExpression = PsiTreeUtil.getParentOfType(context,PsiMethodCallExpression.class);
-
 
         boolean found = false;
         PsiElement psiElement = callExpression;
@@ -67,7 +64,5 @@ public class LocalFvbiGeneratorAction extends AbstractFvbiGeneratorAction {
                 actionManager.tryToExecute(action, ActionCommand.getInputEvent(editorCompleteStatementText), null, ActionPlaces.UNKNOWN, true);
             }
         });
-
-
     }
 }

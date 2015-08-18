@@ -7,6 +7,12 @@ import com.intellij.psi.search.FilenameIndex;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.psi.util.PsiUtilBase;
+import com.intellij.psi.xml.XmlAttribute;
+import com.intellij.psi.xml.XmlTag;
+import org.sssta.androidtools.model.ViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by cauchywei on 15/8/17.
@@ -89,5 +95,31 @@ public class LayoutUtil {
 
     }
 
+
+
+    public static List<ViewModel> getContainingIdViewsInXml(PsiFile xmlFile){
+
+        return getContainingAttributeViewsInXml(xmlFile,"android:id");
+    }
+
+    public static List<ViewModel> getContainingAttributeViewsInXml(PsiFile xmlFile, final String attributeName) {
+
+        final String name = xmlFile.getName();
+        final List<ViewModel> views = new ArrayList<>();
+        xmlFile.accept(new XmlRecursiveElementVisitor() {
+            @Override
+            public void visitXmlTag(XmlTag tag) {
+                super.visitXmlTag(tag);
+                XmlAttribute idAttribute = tag.getAttribute(attributeName);
+
+                if (idAttribute != null) {
+                    String id = idAttribute.getValue();
+                    if (id != null && id.matches("^@\\+?id/.*")){
+                        views.add(new ViewModel(name,id,tag.getName()));
+                    }
+                }
+            }
+        });
+    }
 
 }

@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>org.sssta.androidtools</id>
   <name>Android Tools</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <vendor email="cauchywei@gmail.com" url="http://www.sssta.org">SSSTA</vendor>
 
   <description><![CDATA[

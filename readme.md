@@ -1,10 +1,18 @@
-#Android Tools ( Developing... )
+#Android Tools ( developing... )
 ====================
 <br/>
 
 Android Tools is an Android Studio plugin helping developer reducing heavy and repeat works in development.
 
 <br>
+
+####DEMO
+
+![Tost](demo/toast.gif)
+![fvbi](demo/findViewById.gif)
+![inflate fvbi](demo/inflateFindViewById.gif)
+
+<br/>
 
 ####**Postfix Extension**
 
@@ -28,7 +36,7 @@ You can generate two type `findViewById` from  `setContentView(R.layout.activity
 *	**local var**: `<function>_<type>` e.g. `usernameTextView`
 *	**resourse id**: `<type>_<module>_<function>` e.g. `textView_login_username`
 
-Assuming we have an Activity named `LoginActivity` which's layout file named `activiy_login.xml`
+Assuming we have an Activity named `LoginActivity` whose's layout file named `activiy_login.xml`
 
 A TextView in `activity_layout.xml`
 

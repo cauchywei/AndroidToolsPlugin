@@ -113,7 +113,7 @@ public class ViewModel {
             Collections.copy(result,splitIds);
 
             //remove the type prefix e.g  TextView: textView_login_user_name -> login_user_name
-            if (clazzName.toLowerCase().contains(splitIds.get(0).toLowerCase())){
+            if (CommonUtil.nameMatch(clazzName.toLowerCase(),splitIds.get(0).toLowerCase())){
                 splitIds.remove(0);
             }
 //            for (String clazzName : clazzNames) {

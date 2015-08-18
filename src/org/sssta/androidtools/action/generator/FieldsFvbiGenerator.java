@@ -37,7 +37,7 @@ public class FieldsFvbiGenerator extends AbstractFvbiGenerator {
         PsiElementFactory factory = JavaPsiFacade.getInstance(project).getElementFactory();
 
         for (ViewModel view:views){
-            String fvbiStatement = String.format(fieldFormat,view.getFqClazz(),view.getFieldName());
+            String fvbiStatement = String.format(fieldFormat,view.getClazz(),view.getFieldName());
             fieldStatements.add(factory.createFieldFromText(fvbiStatement, psiClass));
         }
 

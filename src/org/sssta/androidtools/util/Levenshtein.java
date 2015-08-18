@@ -5,11 +5,6 @@ package org.sssta.androidtools.util;
  */
 public class Levenshtein {
 
-    public static void main(String[] args){
-        System.out.println(CommonUtil.splitCamelName("AaaBbbbbCaaaa"));
-
-        System.out.println("@+id/2333".matches("^@\\+?id/.*"));
-    }
 
     public static void levenshtein(String str1,String str2) {
         //计算两个字符串的长度。

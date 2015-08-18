@@ -5,10 +5,10 @@
   <vendor email="cauchywei@gmail.com" url="http://www.sssta.org">SSSTA</vendor>
 
   <description><![CDATA[
-      Helping people developer more easy
-      Support:
-      1.generate Show Toast by toast postfix
-      2.generate findViewById according layout
+      Helping development more easy<br/>
+      Supporting:<br/>
+      1.generate Show Toast by toast postfix<br/>
+      2.generate findViewById according layout<br/>
     ]]></description>
 
   <change-notes><![CDATA[
@@ -23,7 +23,7 @@
        on how to target different products -->
   <!-- uncomment to enable plugin in all products -->
   <depends>com.intellij.modules.lang</depends>
-  <depends>com.intellij.modules.java</depends>
+  <depends>org.jetbrains.android</depends>
 
 
   <extensions defaultExtensionNs="com.intellij">

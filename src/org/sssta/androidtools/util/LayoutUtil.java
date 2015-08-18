@@ -120,6 +120,8 @@ public class LayoutUtil {
                 }
             }
         });
+
+        return views;
     }
 
 }

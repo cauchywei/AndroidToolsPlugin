@@ -19,13 +19,13 @@ Postfix   |Comment
 You can generate two type `findViewById` from  `setContentView(R.layout.activity_login)` statement or `layoutInflater.inflate(R.layout.activity_login,parent)` statement
 
 *	**local** :e.g. generating `TextView usernameTextView = (TextView)findViewById(R.id.textView_username)`
-*	**field** :e.g generating `private TextView mUsernameTextView;` and<br/>
+*	**field** :e.g. generating `private TextView mUsernameTextView;` and<br/>
 	`mUsernameTextView = (TextView)findViewById(R.id.textView_username);`  two parts
 
 ######**Naming Rule**
 *	**Activity/Fragment**: `<module>_<type>` e.g. `LoginActivity`
 *	**field**: `m_<function>_<type>` e.g. `mUsernameTextView`
-*	**local Var**: `<function>_<type>` e.g. `usernameTextView`
+*	**local var**: `<function>_<type>` e.g. `usernameTextView`
 *	**resourse id**: `<type>_<module>_<function>` e.g. `textView_login_username`
 
 Assuming we have an Activity named `LoginActivity` which's layout file named `activiy_login.xml`
@@ -43,15 +43,20 @@ A TextView in `activity_layout.xml`
 
 1.	Remove the type prefix of view id according to tag name
 	*	`textView_login_username` -> `login_username`
-	*	abbreviattional prefix also works e.g. `tv_login_username` -> `login_username`
+	*	abbreviattional prefix also works 		e.g. `tv_login_username` -> `login_username`
 2.	Remove the module according to layout file (`activity_layout`) name
 	*	`login_username` -> `username`
-	*	abbreviattional prefix also works e.g. `lgn_username` -> `username`
+	*	abbreviattional prefix also works 		e.g. `lgn_username` -> `username`
 	
 3.	Append ClassName according to tag name
 	*	`username` -> `usernameTextView` or `mUsernameTextView`
 	
+	
+finally. `textView_login_username` -> `usernameTextView` or `mUsernameTextView`
 
+Next Plan
+----------
+####**Generate Adapter and Model according item layout**
 
 
 License

@@ -52,7 +52,7 @@ A TextView in `activity_layout.xml`
 1.	Remove the type prefix of view id according to tag name
 	*	`textView_login_username` -> `login_username`
 	*	abbreviattional prefix also works 		e.g. `tv_login_username` -> `login_username`
-2.	Remove the module according to layout file (`activity_layout`) name
+2.	Remove the module according to layout file (`activity_login.xml`) name
 	*	`login_username` -> `username`
 	*	abbreviattional prefix also works 		e.g. `lgn_username` -> `username`
 	

@@ -12,7 +12,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
-    add clk Postfix to generate onClickListener
+    add clk Postfix to generate onClickListener according to context
     ]]>
   </change-notes>
 

@@ -9,6 +9,7 @@ Android Tools is an Android Studio plugin helping developer reducing heavy and r
 ####DEMO
 
 ![Tost](demo/toast.gif)
+![ClickListener](demo/clk.gif)
 ![fvbi](demo/findViewById.gif)
 ![inflate fvbi](demo/inflateFindViewById.gif)
 
@@ -19,6 +20,7 @@ Android Tools is an Android Studio plugin helping developer reducing heavy and r
 Postfix   |Comment
 ----------|---------
 `.toast`    |generate `Toast.makeText(this, msg,Toast.LENGTH_SHORT).show();`
+`.clk`      |generate `view.onClickListener(listener);` according to context
 ...      | 
 
 

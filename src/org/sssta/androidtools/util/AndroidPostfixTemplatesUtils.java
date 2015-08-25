@@ -38,10 +38,27 @@ public class AndroidPostfixTemplatesUtils {
     /**
      * Condition that returns true if the element is not null.
      */
+
     public static final Condition<PsiElement> IS_NON_NULL = new Condition<PsiElement>() {
         @Override
         public boolean value(PsiElement element) {
             return IS_NON_VOID.value(element) && !AndroidPostfixTemplatesUtils.isAnnotatedNullable(element);
+        }
+
+    };
+
+    /**
+     * Condition that return true if the element instanceof android.view.View
+     */
+    public static final Condition<PsiElement> IS_VIEW = new Condition<PsiElement>() {
+        @Override
+        public boolean value(PsiElement element) {
+            if (element != null && element instanceof PsiExpression) {
+                PsiType type = ((PsiExpression) element).getType();
+                return InheritanceUtil.isInheritor(type,AndroidFQClass.VIEW);
+            } else {
+                return false;
+            }
         }
 
     };

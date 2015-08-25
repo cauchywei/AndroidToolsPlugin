@@ -2,11 +2,9 @@ package org.sssta.androidtools.posfix;
 
 import com.intellij.codeInsight.template.postfix.templates.JavaPostfixTemplateProvider;
 import com.intellij.codeInsight.template.postfix.templates.PostfixTemplate;
-import com.intellij.codeInsight.template.postfix.templates.PostfixTemplateProvider;
-import com.intellij.openapi.editor.Editor;
-import com.intellij.psi.PsiFile;
 import com.intellij.util.containers.ContainerUtil;
 import org.jetbrains.annotations.NotNull;
+import org.sssta.androidtools.posfix.template.ClickListenerPostfixTemplate;
 import org.sssta.androidtools.posfix.template.ToastPostfixTemplate;
 
 import java.util.HashSet;
@@ -20,7 +18,8 @@ public class AndroidPostfixTemplateProvider extends JavaPostfixTemplateProvider 
 
     public AndroidPostfixTemplateProvider() {
         templates = ContainerUtil.<PostfixTemplate>newHashSet(
-                new ToastPostfixTemplate()
+                new ToastPostfixTemplate(),
+                new ClickListenerPostfixTemplate()
         );
     }
 

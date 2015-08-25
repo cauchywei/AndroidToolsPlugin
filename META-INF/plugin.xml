@@ -1,7 +1,7 @@
 <idea-plugin version="2">
   <id>org.sssta.androidtools</id>
   <name>Android Tools</name>
-  <version>1.1</version>
+  <version>1.2</version>
   <vendor email="cauchywei@gmail.com" url="http://www.sssta.org">SSSTA</vendor>
 
   <description><![CDATA[
@@ -12,7 +12,7 @@
     ]]></description>
 
   <change-notes><![CDATA[
-
+    add clk Postfix to generate onClickListener
     ]]>
   </change-notes>
 
@@ -23,6 +23,7 @@
        on how to target different products -->
   <!-- uncomment to enable plugin in all products -->
   <depends>com.intellij.modules.lang</depends>
+  <depends>org.jetbrains.android</depends>
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
